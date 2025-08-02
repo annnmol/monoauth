@@ -1,103 +1,126 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert(`Login attempt with phone number: +91${phoneNumber}`);
+  };
+
+  return (
+    <div className="min-h-screen bg-black flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl">
+        <Card className="bg-slate-800 border-slate-700 relative">
+          <CardContent className="p-0">
+            {/* Close Button */}
+            {/* <button className="absolute top-4 right-4 text-gray-400 hover:text-white text-xl z-10">
+              ✕
+            </button> */}
+
+            {/* Header */}
+            <div className="text-center pt-8 pb-6 px-8">
+              <h1 className="text-white text-2xl font-medium mb-2">
+                Login or sign up to continue
+              </h1>
+              <p className="text-gray-400 text-sm">
+                Scan QR code or enter phone number to login
+              </p>
+            </div>
+
+            <div className="flex">
+              {/* QR Code Section */}
+              <div className="flex-1 flex flex-col items-center justify-center p-8 border-r border-slate-700">
+                <div className="w-40 h-40 bg-white p-3 rounded-2xl mb-6">
+                  <Image
+                    src="https://45kz7jry.user.webaccel.jp/images/gallery/g-multi_1481529161.png"
+                    alt="QR Code"
+                    width={160}
+                    height={160}
+                    className="w-full h-full object-cover rounded-xl"
+                  />
+                </div>
+                <h3 className="text-white font-medium text-base mb-2">
+                  Use Camera App to Scan QR
+                </h3>
+                <p className="text-gray-400 text-sm text-center max-w-xs">
+                  Click on the link generated to redirect to Monoauth mobile app
+                </p>
+              </div>
+
+              {/* OR Divider */}
+              <div className="flex items-center justify-center px-4">
+                {/* <span className="text-gray-400 text-sm font-medium bg-slate-800 px-2">
+                  OR
+                </span> */}
+              </div>
+
+              {/* Phone Number Section */}
+              <div className="flex-1 p-8">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-gray-300 text-sm mb-3">
+                      Enter mobile number
+                    </label>
+                    <div className="flex gap-2">
+                      <div className="flex items-center px-3 py-2 bg-slate-700 border border-slate-600 rounded-md border-r-0">
+                        <span className="text-white text-sm">+91</span>
+                      </div>
+                      <Input
+                        type="tel"
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
+                        placeholder="Enter mobile number"
+                        className="flex-1 bg-slate-700 border-slate-600 text-white placeholder-gray-400 rounded focus:border-blue-500 focus-visible:ring-0 focus-visible:ring-offset-0 outline-none h-10 text"
+                        maxLength={10}
+                      />
+                    </div>
+                    
+                    {/* Description below input */}
+                    <p className="text-gray-400 text-xs mt-3 leading-relaxed">
+                      By proceeding you confirm that you are above
+                      <br />
+                      18 years of age and agree to the{" "}
+                      <button className="text-blue-400 hover:underline">
+                        Privacy Policy
+                      </button>
+                      {" "}&{" "}
+                      <button className="text-blue-400 hover:underline">
+                        Terms of Use
+                      </button>
+                      .
+                    </p>
+                  </div>
+                  
+                  <Button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-pink-500 hover:from-blue-600 hover:to-pink-600 text-white font-medium py-2.5 rounded-md text-sm mt-6"
+                    disabled={phoneNumber.length !== 10}
+                  >
+                    Get OTP
+                  </Button>
+                </form>
+
+                {/* Help link at the bottom */}
+                <div className="mt-6 text-center">
+                  <p className="text-gray-400 text-sm">
+                    Having trouble logging in?{" "}
+                    <button className="text-blue-400 hover:underline">
+                      Get Help
+                    </button>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }
